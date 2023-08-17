@@ -1,0 +1,6 @@
+{% autoescape off %}
+Bienvenu sur OGseed
+Bonjour {{ name }}
+Veuillez confirmer votre adresse email en cliquant sur le lien suivant :
+Lien : http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+{% endautoescape %}

@@ -1,0 +1,20 @@
+<!-- cart.html -->
+{% extends "shop/base.html" %}
+
+{% block title %}Panier{% endblock %}
+
+{% block content %}
+<h1>Votre Panier</h1>
+
+{% for item in cart_items %}
+<div>
+    <h4>{{ item.product.title }}</h4>
+    <p>Quantité: {{ item.quantity }}</p>
+    <p>Sous-total: {{ item.subtotal }}</p>
+    <a href="{% url 'remove_from_cart' item.id %}">Supprimer</a>
+</div>
+{% endfor %}
+
+<h3>Total: {{ cart.total }}</h3>
+
+{% endblock %}

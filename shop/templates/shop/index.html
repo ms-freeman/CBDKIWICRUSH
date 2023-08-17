@@ -1,0 +1,115 @@
+{% extends "shop/base.html" %}
+
+{% block title %}E-commerce - Accueil{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron text-center" style="background-color: black; height: auto;">
+    <h3 class="text-white">Toutes les originales de Sensi Seeds -25%</h3>
+</div>
+
+<div class="container">
+    <h2 class="text-center my-4">N°1 sur les Graines de Cannabis, Seed-Shop basé en France !</h2>
+    <p class="text-center mb-5">Si vous êtes un amateur de weed, vous savez que la qualité des graines de cannabis est un élément clé pour obtenir une récolte satisfaisante. Chez La Maison de la Graine, nous travaillons avec les banques de graines les plus réputées du monde entier pour vous proposer des graines de cannabis à la génétique stable.</p>
+    
+    <!-- ... Autres informations sur les variétés de graines ... -->
+    
+    <h2 class="text-center my-4">Meilleures ventes</h2>
+    <div class="row">
+        {% for product in product_object %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ product.image }}" class="card-img-top" alt="{{ product.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.title }}</h5>
+                        <p class="card-text">{{ product.price }} $</p>
+                        <a href="{{ product.id }}" class="btn btn-warning">Regarder</a>
+                        <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary">Ajouter au panier</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container">
+    <h2 class="text-center my-4">Nouveautés</h2>
+    <div class="row">
+        {% for product in product_object %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ product.image }}" class="card-img-top" alt="{{ product.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.title }}</h5>
+                        <p class="card-text">{{ product.price }} $</p>
+                        <a href="{{ product.id }}" class="btn btn-warning">Regarder</a>
+                        <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary">Ajouter au panier</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container">
+    <h2 class="text-center my-4">Blog</h2>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card mb-4">
+                <img src="lien_de_l_image_1.jpg" class="card-img-top" alt="Article 1">
+                <div class="card-body">
+                    <h5 class="card-title">Titre de l'article 1</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vestibulum urna in libero...</p>
+                    <a href="#" class="btn btn-primary">Lire la suite</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card mb-4">
+                <img src="lien_de_l_image_2.jpg" class="card-img-top" alt="Article 2">
+                <div class="card-body">
+                    <h5 class="card-title">Titre de l'article 2</h5>
+                    <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque...</p>
+                    <a href="#" class="btn btn-primary">Lire la suite</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card mb-4">
+                <img src="lien_de_l_image_3.jpg" class="card-img-top" alt="Article 3">
+                <div class="card-body">
+                    <h5 class="card-title">Titre de l'article 3</h5>
+                    <p class="card-text">Quisque venenatis enim vel elit imperdiet, ,zi enil elit sit amet eleifend ante tristique...</p>
+                    <a href="#" class="btn btn-primary">Lire la suite</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card mb-4">
+                <img src="lien_de_l_image_4.jpg" class="card-img-top" alt="Article 4">
+                <div class="card-body">
+                    <h5 class="card-title">Titre de l'article 4</h5>
+                    <p class="card-text">Fusce nec tellus eget libero efficitur euismod. Pellentesque in metus eget justo...</p>
+                    <a href="#" class="btn btn-primary">Lire la suite</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <h2 class="text-center my-4">Inscrivez-vous à notre Newsletter</h2>
+    <form class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="input-group mb-3">
+                <input type="email" class="form-control" placeholder="Votre adresse e-mail" aria-label="Votre adresse e-mail" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button" id="button-addon2">S'inscrire</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "shop/base.html" %}
+
+{% block title %}S'enregistrer{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">S'enregistrer Ici</div>
+        <div class="card-body">
+          {% for message in messages %}
+          <div class="alert alert-danger">{{ message }}</div>
+          {% endfor %}
+          <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" name="username" id="username" class="form-control" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+              <label for="firstname">Firstname</label>
+              <input type="text" name="firstname" id="firstname" class="form-control" placeholder="Firstname" required>
+            </div>
+            <div class="form-group">
+              <label for="lastname">Lastname</label>
+              <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Lastname" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+              <label for="password1">Confirm Password</label>
+              <input type="password" name="password1" id="password1" class="form-control" placeholder="Confirm Password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">S'inscrire</button>
+          </form>
+          <p class="mt-3">Déjà un compte ? <a href="{% url 'user_login' %}" class="btn btn-link">Se connecter</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
