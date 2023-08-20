@@ -12,11 +12,9 @@
         <form id="contact-form" method="post">
             {% csrf_token %}
 
-            {% if messages %}
-            <div class="alert alert-success">
-                {{ messages }}
-            </div>
-            {% endif %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" style="text-align:center;" >{{ message }}</div>
+          {% endfor %}
 
             <div class="form-group">
                 <label for="name">Nom :</label>

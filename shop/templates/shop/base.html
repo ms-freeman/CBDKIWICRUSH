@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}OGSeed{% endblock %}</title>
     <!-- ... balises <head> ... -->
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://kit.fontawesome.com/36611891d2.js" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -47,7 +47,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark py-1" style="background-color: #00d358;">
         <!-- Contenu de la barre de navigation -->
         <div class="container d-flex justify-content-center ">
-            <a class="navbar-brand" href="#" style="color: black;">OGSeed Genetix</a>
+            <a class="navbar-brand" href="{% url 'Home'%}" style="color: black;">OGSeed Genetix</a>
         </div>
         <div class="container d-flex justify-content-center">
             <form class="justify-content-center align-items-center" method="GET" action="{% url 'Home' %}">
@@ -60,7 +60,7 @@
         <div class="container d-flex justify-content-between ">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-shopping-cart" style="color: #ffffff;"></i></a>
+                    <a class="nav-link" href="{% url 'cart' %}"><i class="fas fa-shopping-cart" style="color: #ffffff;"></i></a>
                 </li>
                 <li class="nav-item">
                     {% if user.is_authenticated %}
@@ -85,28 +85,28 @@
         <div class="container">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Graines de Cannabis</a>
+                    <a class="nav-link" href="{% url 'graines_cannabis_view' %}">Graines de Cannabis</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Graines Féminisées</a>
+                    <a class="nav-link" href="{% url 'graines_feminisees_view' %}">Graines Féminisées</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Graines Autofloraison</a>
+                    <a class="nav-link" href="{% url 'graines_autofloraison_view' %}">Graines Autofloraison</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Breeding Grounds</a>
+                    <a class="nav-link" href="{% url 'breeding_grounds_view' %}">Breeding Grounds</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Produits CBD</a>
+                    <a class="nav-link" href="{% url 'produits_cbd_view' %}">Produits CBD</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sensi Weeds</a>
+                    <a class="nav-link" href="{% url 'sensi_weeds_view' %}">Sensi Weeds</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Marchandises</a>
+                    <a class="nav-link" href="{% url 'marchandises_view' %}">Marchandises</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Vaporisateurs</a>
+                    <a class="nav-link" href="{% url 'vaporisateur_view' %}">Vaporisateurs</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Blog</a>
@@ -169,7 +169,8 @@
     
     <script src="https://kit.fontawesome.com/36611891d2.js" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/36611891d2.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {% comment %} <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> {% endcomment %}
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- ... Autres balises <head> ... -->

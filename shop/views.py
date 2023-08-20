@@ -1,10 +1,9 @@
 from .forms import ContactForm
-from django.shortcuts import render,redirect
-from .models import Product, SearchQuery, ContactMessage
+from django.shortcuts import render,redirect,get_object_or_404
+from .models import Product, SearchQuery, ContactMessage,Category
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import get_user_model
-from django.contrib.auth import login, authenticate,logout
+from django.contrib.auth import get_user_model,login, authenticate,logout
 from django.contrib.auth.models import User
 from ecommerce import settings
 from django.core.mail import send_mail, EmailMessage
@@ -13,7 +12,12 @@ from django.utils.encoding import force_bytes,force_text
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
 from .token import generatorToken
-# Create your views here.
+from django.contrib.auth import get_user_model,login,authenticate,logout
+from .models import Cart, CartItem
+from decimal import Decimal
+
+
+                        #Accueil
 def index(request):
 
 
@@ -26,16 +30,32 @@ def index(request):
     return render(request, 'shop/index.html', {'product_object': products_object})
 
 
+
+                        #FIN Accueil
+                    
+                    
+                    
+                        #fiche produits
+
+
+
+
 def detail(request,myid):
     products_object = Product.objects.get(id=myid)
     return render(request,'shop/detail.html',{'product': products_object})
 
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import get_user_model,login,authenticate,logout
-from .models import Cart, CartItem
-from shop.models import Product
-from decimal import Decimal
+
+                        #Fin fiche produits
+                            
+
+
+
+
+
+
+
+
+                        # PANIER + options
 
 User = get_user_model()
 
@@ -81,19 +101,37 @@ def view_cart(request):
 
     return render(request, 'shop/cart.html', {'cart': cart, 'cart_items': cart_items})
 
+# def remove_from_cart(request, cart_item_id):
+#     cart_item = get_object_or_404(CartItem, id=cart_item_id)
+#     cart = cart_item.cart
+
+#     # Soustraire le prix du produit du total du panier
+
+#     cart.total -= cart_item.subtotal
+#     cart_item.delete()
+#     cart.save()
+
+#     return redirect('cart')
 def remove_from_cart(request, cart_item_id):
     cart_item = get_object_or_404(CartItem, id=cart_item_id)
     cart = cart_item.cart
 
     # Soustraire le prix du produit du total du panier
-
-    cart.total -= cart_item.subtotal
     cart_item.delete()
+
+    # Mettre à jour le total du panier en utilisant la méthode calculate_total()
     cart.save()
 
     return redirect('cart')
+                        # FIN PANIER
 
 
+
+
+
+
+
+                        # Enregistrement et connection des utilisateurs + ACTIVATION MESSAGES
 
 def register(request):
     if request.method=="POST":
@@ -149,23 +187,12 @@ def register(request):
         return redirect('user_login')
     return render(request,'shop/register.html')
 
-#def user_login(request):
-    #if request.method=="POST":
-        #username = request.POST['username']
-        #password = request.POST['password']
-        #user = authenticate(username=username, password = password)
-        #my_user = User.objects.get(username = username)
-        #if user is not None:
-            #login(request,user)
-            #firstname = user.first_name
-            #return redirect('user_login')
-        #elif my_user.is_active == False:
-            #messages.error(request,'Veuillez confirmer votre adresse email avant de vous connectez')
-        #else:
-            #messages.error(request,'INCORRECT')
-            #return redirect('user_login')
-    #elif request.method == "GET":
-        #return render(request, 'shop/user_login.html')
+
+
+
+
+
+                                    
     
 def user_login(request):
     # Nettoyer les messages stockés dans la session
@@ -219,6 +246,13 @@ def activate(request,uidb64,token):
         return redirect('Home')
     
     
+    
+                                # fin enregistrement et connection des utilisateurs + ACTIVATION MESSAGES
+    
+    
+    
+    
+                                # FORMULAIRE DE CONTACT
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -235,3 +269,205 @@ def contact(request):
 
 
 
+                            # FIN FORMULAIRE DE CONTACT
+                            
+                            
+                            
+                            # MENU PRINCIPAL
+
+def graines_cannabis_view(request):
+    category = Category.objects.get(name="Graines de Cannabis")
+    products = Product.objects.filter(category=category)
+    context = {
+        'products': products,
+    }
+    return render(request, 'shop/grainesdecannabis.html', context)
+
+
+def graines_feminisees_view(request):
+    category = Category.objects.get(name="Graines Féminisées")
+    products = Product.objects.filter(category=category)
+    context = {
+        'products': products,
+    }
+    return render(request, 'shop/grainesfeminisees.html', context)
+
+
+
+def graines_autofloraison_view(request):
+    category = Category.objects.get(name="Graines Autofloraison")
+    products = Product.objects.filter(category=category)
+    context = {
+        'products': products,
+    }
+    return render(request, 'shop/grainesautofloraison.html', context)
+
+
+
+def breeding_grounds_view(request):
+    category = Category.objects.get(name="Breeding Grounds")
+    products = Product.objects.filter(category=category)
+    context = {
+        'products': products,
+    }
+    return render(request, 'shop/breedinggrounds.html', context)
+
+
+
+
+
+def produits_cbd_view(request):
+    category = Category.objects.get(name="Produits CBD")
+    products = Product.objects.filter(category=category)
+    context = {
+        'products': products,
+    }
+    return render(request, 'shop/produitscbd.html', context)
+
+
+
+
+
+def sensi_weeds_view(request):
+    category = Category.objects.get(name="Sensi Weeds")
+    products = Product.objects.filter(category=category)
+    context = {
+        'products': products,
+    }
+    return render(request, 'shop/sensiweeds.html', context)
+
+
+
+
+
+def marchandises_view(request):
+    category = Category.objects.get(name="Marchandises")
+    products = Product.objects.filter(category=category)
+    context = {
+        'products': products,
+    }
+    return render(request, 'shop/marchandises.html', context)
+
+
+
+
+
+
+def vaporisateur_view(request):
+    category = Category.objects.get(name="Vaporisateurs")
+    products = Product.objects.filter(category=category)
+    context = {
+        'products': products,
+    }
+    return render(request, 'shop/vaporisateurs.html', context)
+
+
+
+                        # FIN MENU PRINCIPAL
+
+
+
+
+# Dans views.py
+from django.http import JsonResponse
+def is_ajax(request):
+    return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+
+def adjust_cart_quantity(request):
+    if request.method == 'POST' and request.is_ajax:
+        cart_item_id = request.POST.get('cart_item_id')
+        new_quantity = int(request.POST.get('new_quantity'))
+
+        if request.user.is_authenticated:
+            user_cart = Cart.objects.get(user=request.user)
+        else:
+            session_key = request.session.session_key
+            user_cart, created = Cart.objects.get_or_create(session_key=session_key)
+
+        cart_item = CartItem.objects.get(id=cart_item_id)
+        cart_item.quantity = new_quantity
+        cart_item.save()
+
+        new_total = user_cart.calculate_total()
+
+        response_data = {
+            'success': True,
+            'new_subtotal': cart_item.subtotal,
+            'new_total': new_total,
+        }
+        
+        return JsonResponse(response_data)
+    else:
+        return JsonResponse({'success': False})
+
+
+
+
+
+
+def calculate_new_cart_total(cart_items):
+    # Calculez le nouveau total du panier en fonction des éléments dans le panier
+    new_total = sum(item.subtotal for item in cart_items)
+    
+    return new_total
+print(calculate_new_cart_total)
+def get_cart_total(request):
+    cart_items = CartItem.objects.filter(cart=request.user.cart)
+    # Calculez le nouveau total du panier en fonction des éléments dans le panier
+    new_total = calculate_new_cart_total(cart_items)
+    
+    response_data = {
+        'success': True,
+        'cart_total': new_total,  # Nouveau total du panier calculé
+    }
+    return JsonResponse(response_data)
+
+
+
+# def adjust_cart_quantity(request):
+#     if request.method == 'POST' and request.is_ajax:
+#         cart_item_id = request.POST.get('cart_item_id')
+#         new_quantity = int(request.POST.get('new_quantity'))
+
+#         # Supposons que vous ayez un modèle CartItem qui représente les articles dans le panier
+#         cart_item = CartItem.objects.get(id=cart_item_id)
+
+#         # Mettez à jour la quantité et le sous-total du panier
+#         cart_item.quantity = new_quantity
+#         cart_item.subtotal = cart_item.product.price * new_quantity
+#         cart_item.save()
+
+#         # Recalculez le nouveau total du panier en parcourant tous les articles du panier de l'utilisateur
+#         if request.user.is_authenticated:
+#             cart = request.user.cart  # Récupérez le panier de l'utilisateur authentifié
+#             cart_items = cart.cart_items.all()
+#             new_total = calculate_new_cart_total(cart_items)
+#         else:
+#             new_total = calculate_new_cart_total_anonymous()
+
+#         response_data = {
+#             'success': True,
+#             'new_subtotal': cart_item.subtotal,
+#             'new_total': new_total,
+#         }
+
+#         return JsonResponse(response_data)
+#     else:
+#         return JsonResponse({'success': False})
+
+
+
+
+
+
+
+# def calculate_new_cart_total(cart_items):
+#     # Calculez le nouveau total du panier en fonction des éléments dans le panier
+#     new_total = sum(item.subtotal for item in cart_items)
+    
+#     return new_total
+# def calculate_new_cart_total_anonymous(cart_items):
+#     # Calculez le nouveau total du panier en fonction des éléments dans le panier
+#     new_total = sum(item.subtotal for item in cart_items)
+    
+#     return new_total
