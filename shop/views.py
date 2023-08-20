@@ -88,7 +88,7 @@ def add_to_cart(request, product_id):
 def view_cart(request):
     # Récupérer l'utilisateur actuel
     user = request.user
-
+    
     # Vérifier si l'utilisateur est authentifié
     if user.is_authenticated:
         # Utilisateur authentifié, récupérer le panier lié à l'utilisateur
@@ -374,7 +374,7 @@ def is_ajax(request):
     return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 
 def adjust_cart_quantity(request):
-    if request.method == 'POST' and request.is_ajax:
+    if request.method == 'POST' and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         cart_item_id = request.POST.get('cart_item_id')
         new_quantity = int(request.POST.get('new_quantity'))
 
