@@ -1,8 +1,3 @@
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -42,7 +37,6 @@
                     </li>
                 </ul>
             </div>
-        
     </nav>
     <nav class="navbar navbar-expand-lg navbar-dark py-1" style="background-color: #00d358;">
         <!-- Contenu de la barre de navigation -->
@@ -73,13 +67,8 @@
                     {% endif %}
                 </li>
             </ul>
-        </div>
-        
+        </div>  
     </nav>
-    
-    
-    
-    
     {% block subnavbar %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
@@ -115,67 +104,57 @@
         </div>
     </nav>
     {% endblock %}
-
     <div class="container mt-4">
         {% block content %}
         <!-- Contenu spécifique à chaque page -->
         {% endblock %}
     </div>
-    <!-- Footer -->
-<footer class="bg-dark text-white py-4">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                <h5 class="text-uppercase">Informations</h5>
-                <p>La Maison de la Graine</p>
-                <p>1 - France Métropolitaine</p>
-                <p>contact@lamaisondelagraine.net</p>
-                <i class="fas fa-phone"><a href="">TÉLÉPHONE : 09.87.37.26.45</a></i>
+        <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="text-uppercase">Informations</h5>
+                    <p>La Maison de la Graine</p>
+                    <p>1 - France Métropolitaine</p>
+                    <p>contact@lamaisondelagraine.net</p>
+                    <i class="fas fa-phone"><a href="">TÉLÉPHONE : 09.87.37.26.45</a></i>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="text-uppercase">Actualités</h5>
+                    <p><a href="#!" class="text-white">NOTRE BOUTIQUE À ARLES</a><br><a href="#!" class="text-white">NOTRE BOUTIQUE À AIX</a></p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="text-uppercase">Société</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/contact" class="text-white">Contact</a></li>
+                        <li><a href="#!" class="text-white">Mentions Légales</a></li>
+                        <li><a href="#!" class="text-white">Conditions d'utilisation</a></li>
+                        <!-- Ajoutez les autres liens ici -->
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <h5 class="text-uppercase">Suivez-nous</h5>
+                    <a href="#!" class="btn btn-outline-light btn-floating m-1"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#!" class="btn btn-outline-light btn-floating m-1"><i class="fab fa-twitter"></i></a>
+                    <a href="#!" class="btn btn-outline-light btn-floating m-1"><i class="fab fa-google"></i></a>
+                    <a href="#!" class="btn btn-outline-light btn-floating m-1"><i class="fab fa-instagram"></i></a>
+                    <a href="#!" class="btn btn-outline-light btn-floating m-1"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#!" class="btn btn-outline-light btn-floating m-1"><i class="fab fa-github"></i></a>
+                </div>
             </div>
-            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                <h5 class="text-uppercase">Actualités</h5>
-                <p><a href="#!" class="text-white">NOTRE BOUTIQUE À ARLES</a><br><a href="#!" class="text-white">NOTRE BOUTIQUE À AIX</a></p>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                <h5 class="text-uppercase">Société</h5>
-                <ul class="list-unstyled">
-                    <li><a href="/contact" class="text-white">Contact</a></li>
-                    <li><a href="#!" class="text-white">Mentions Légales</a></li>
-                    <li><a href="#!" class="text-white">Conditions d'utilisation</a></li>
-                    <!-- Ajoutez les autres liens ici -->
-                </ul>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                <h5 class="text-uppercase">Suivez-nous</h5>
-                <a href="#!" class="btn btn-outline-light btn-floating m-1"><i class="fab fa-facebook-f"></i></a>
-                <a href="#!" class="btn btn-outline-light btn-floating m-1"><i class="fab fa-twitter"></i></a>
-                <a href="#!" class="btn btn-outline-light btn-floating m-1"><i class="fab fa-google"></i></a>
-                <a href="#!" class="btn btn-outline-light btn-floating m-1"><i class="fab fa-instagram"></i></a>
-                <a href="#!" class="btn btn-outline-light btn-floating m-1"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#!" class="btn btn-outline-light btn-floating m-1"><i class="fab fa-github"></i></a>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">© 2023 Mon E-commerce. Tous droits réservés.</p>
             </div>
         </div>
-        <hr class="my-4">
-        <div class="text-center">
-            <p class="mb-0">© 2023 Mon E-commerce. Tous droits réservés.</p>
-        </div>
-    </div>
-</footer>
-
-<!-- End of Footer -->
-
-        
-    
-    
-    <script src="https://kit.fontawesome.com/36611891d2.js" crossorigin="anonymous"></script>
+    </footer>
+    <!-- End of Footer -->
     <script src="https://kit.fontawesome.com/36611891d2.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    {% comment %} <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> {% endcomment %}
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- ... Autres balises <head> ... -->
-  
-
 </body>
 </html>
 

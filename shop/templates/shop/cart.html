@@ -23,7 +23,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Récapitulatif de Commande</h4>
-                    <p class="card-text" >Sous-total: {{ cart.calculate_total}}</p>
+                    <p class="card-text">Sous-total: <span id="subtotal-display">  {{ cart.calculate_total}}</p>
                     <p class="card-text">TVA : 0.57 $</p>
                     <p class="card-text">Frais de livraison: Gratuit</p>
                     <hr>
@@ -52,64 +52,6 @@
         </div>
     </div>
 </div>
-{% comment %} <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        function updateCartItem(itemId, newQuantity) {
-            var quantityElement = $("#quantity_" + itemId);
-            var subtotalElement = $("#subtotal_" + itemId);
-            var cartTotalElement = $("#cart-total");
-        // Mettre à jour la quantité et le sous-total
-            var currentQuantity = parseInt(quantityElement.text());
-            var price = parseFloat(subtotalElement.text()) / currentQuantity;
-            var newSubtotal = price * newQuantity;
-            quantityElement.text(newQuantity);
-            subtotalElement.text(newSubtotal.toFixed(2)); // Assurez-vous d'avoir 2 décimales
-        // Mettre à jour le panier côté serveur (utilisez AJAX pour cela)
-        // ...
-        // Mettre à jour le total du récapitulatif de commande (utilisez AJAX pour cela)
-        // ...
-            $.ajax({
-                url: "{% url 'adjust_cart_quantity' %}",
-                type: "POST",
-                data: {
-                    'cart_item_id': itemId,
-                    'new_quantity': newQuantity,
-                    csrfmiddlewaretoken: '{{ csrf_token }}',
-                },
-                success: function(data) {
-                    if (data.success) {
-                        // Mettre à jour le total du récapitulatif de commande avec data.new_total
-                        cartTotalElement.text(data.new_total);
-
-                        
-                    }
-                }
-            });
-        }
-        $(".increase-quantity").on("click", function() {
-            var itemId = $(this).data("id");
-            var quantityElement = $("#quantity_" + itemId);
-
-            var currentQuantity = parseInt(quantityElement.text());
-            var newQuantity = currentQuantity + 1;
-            updateCartItem(itemId, newQuantity);
-        });
-        $(".decrease-quantity").on("click", function() {
-            var itemId = $(this).data("id");
-            var quantityElement = $("#quantity_" + itemId);
-
-            var currentQuantity = parseInt(quantityElement.text());
-            if (currentQuantity > 1) {
-                var newQuantity = currentQuantity - 1;
-                updateCartItem(itemId, newQuantity);
-            }
-            
-        });
-        
-    });
-</script>   {% endcomment %}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
         function updateCartItem(itemId, newQuantity) {
@@ -123,11 +65,6 @@
             var newSubtotal = price * newQuantity;
             quantityElement.text(newQuantity);
             subtotalElement.text(newSubtotal.toFixed(2)); // Assurez-vous d'avoir 2 décimales
-            
-            // Mettre à jour le panier côté serveur (utilisez AJAX pour cela)
-            // ...
-            // Mettre à jour le total du récapitulatif de commande (utilisez AJAX pour cela)
-            // ...
             $.ajax({
                 url: "{% url 'adjust_cart_quantity' %}",
                 type: "POST",
@@ -143,11 +80,11 @@
                     if (data.success) {
                         // Mettre à jour le total du récapitulatif de commande avec data.new_total
                         cartTotalElement.text(data.new_total);
+                        $("#subtotal-display").text(data.new_subtotal);
                     }
                 }
             });
         }
-        
         $(".increase-quantity").on("click", function() {
             var itemId = $(this).data("id");
             var quantityElement = $("#quantity_" + itemId);
@@ -156,7 +93,6 @@
             var newQuantity = currentQuantity + 1;
             updateCartItem(itemId, newQuantity);
         });
-        
         $(".decrease-quantity").on("click", function() {
             var itemId = $(this).data("id");
             var quantityElement = $("#quantity_" + itemId);
@@ -168,7 +104,7 @@
             }
         });
     });
-</script>
+</script> 
 {% endblock %}
 
 
